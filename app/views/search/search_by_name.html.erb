@@ -1,0 +1,31 @@
+<div class="container">
+	<% @book_by_name.each do |b| %>
+	<div class="row">
+		<div class="col-md-12">
+			<h3><%= b.category%></h3>
+			<div class="row product-list">
+				<div class="col-md-4">
+					<section class="panel">
+						<div class="pro-img-box text-center" style="margin-top: 15px">
+							<img src="<%= b.image%>" alt="" style="width: 200px;height: 160px">
+						</div>
+						<div class="panel-body text-center">
+							<h4><a href="/book/show/<%= b.id%>" class="pro-title">書名： <%= b.name%> </a></h4>
+							<p class="BN">
+								索書號： <%= b.BN%>
+							</p>
+							<p class="borrowed">
+								<%if b.borrowed == false %>
+								<span class="label label-sm label-success">可外借</span>
+								<%else%>
+								<span class="label label-sm label-danger">租借中</span>
+								<%end%>
+							</p>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%end%>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<div class="panel panel-white" id="panel1" style="margin-top: 30px">
+			<table class="table  table-hover" id="sample-table-2">
+				<thead>
+					<tr>
+						<th class="col-md-1"></th>
+						<th class="col-md-2">書名</th>
+						<th class="hidden-xs col-md-2">索書號</th>
+						<th class="hidden-xs col-md-2">到期日</th>
+						<th class="hidden-xs col-md-1">歸還</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@book.each do |b|%>
+					<tr>
+						<td></td>
+						<td><%= b.book.name%></td>
+						<td><%= b.book.BN%></td>
+						<td ><%= b.dead_line%></td>
+						<td><%if b.borrowed == true %> <a href="/bookrent/update/<%= b.id%>"class="btn btn-info"> 還書</a> <%else%> <span class="label label-sm label-success">已歸還</span><%end%></td>
+					</tr>
+					<%end%>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

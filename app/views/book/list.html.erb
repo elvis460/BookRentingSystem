@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="panel panel-white" id="panel1">
+			<div class="form-group">
+				<div class="col-lg-10"  style="margin-bottom: 30px; margin-top:15px">
+					<a href="/book/new" class="btn btn-danger"> 新增書籍 </a>
+				</div>
+			</div>
+			<table class="table  table-hover" id="sample-table-2">
+				<thead>
+					<tr>
+						<th class="col-md-1"></th>
+						<th class="col-md-3">書名</th>
+						<th class="hidden-xs col-md-2">索書號</th>
+						<th class="hidden-xs col-md-2">狀態</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@book.each do |b|%>
+					<tr>
+						<td></td>
+						<td><%= b.name%></td>
+						<td class="hidden-xs"><%= b.BN%></td>
+						<td class="hidden-xs"><%if b.borrowed == false %> <span class="label label-sm label-success">可外借</span> <%else%> <span class="label label-sm label-danger">租借中</span> <%end%></td>
+						<td class="center">
+						<div class="visible-md visible-lg hidden-sm hidden-xs">
+							<a href="/book/edit/<%= b.id%>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+							<a href="/book/destroy/<%= b.id%>" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class=" glyphicon glyphicon-remove"></i></a>
+						</div></td>
+					</tr>
+					<%end%>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

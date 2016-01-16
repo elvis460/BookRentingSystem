@@ -1,0 +1,178 @@
+<div class="navbar yamm navbar-main" style="border: 0px" role="navigation">
+	<div class="row">
+		<div class="navbar-header">
+			<button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle">
+				<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<div id="navbar-collapse-1" class="navbar-collapse collapse " style="background-color: orange">
+			<div class="col-md-offset-1">
+				<ul class="nav navbar-nav ">
+					<li class="">
+						<a href="/book/index">首頁</a>
+					</li>
+					<li>
+						<a data-toggle="modal" data-target="#search">
+						<div class="item-content">
+							<div class="item-media">
+								<i class="ti-home"></i>
+							</div>
+							<div class="item-inner">
+								<span class="title">查詢書籍狀態</span>
+							</div>
+						</div> </a>
+					</li>
+					<li class="">
+						<a href="/bookrent/list">歸還書籍</a>
+					</li>
+					<li class="">
+						<a href="/book/list">新增/修改書籍資料</a>
+					</li>
+					<% if user_signed_in? %>
+					<li class="">
+						<a href="/user/edit/">修改會員資料</a>
+					</li>
+					<%end%>
+				</ul>
+				<ul class="nav navbar-nav" style="margin-left: 480px">
+					<% if user_signed_in? %>
+					<li style="margin-top: 15px">
+						<span class="username"><%= current_user.name%></span>
+					</li>
+					<li >
+						<%= link_to "Log Out" , "/session/destroy"%>
+					</li>
+					<%else%>
+					<li>
+						<a data-toggle="modal" data-target="#login">
+						<div class="item-content">
+							<div class="item-media">
+								<i class="ti-home"></i>
+							</div>
+							<div class="item-inner">
+								<span class="title">登入</span>
+							</div>
+						</div> </a>
+					</li>
+					<li>
+						<%= link_to '註冊' , '/user/new'%>
+					</li>
+					<%end%>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- login modal-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="addcontact">登入</h4>
+			</div>
+			<div class="modal-body ">
+				<div class="row">
+					<div class="col-md-12">
+						<form role="form" class="form-horizontal col-md-offset-1" action="/session/create" method="post" style="margin-top: 15px">
+							<%= token_tag nil%>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="inputEmail3"> 姓名 </label>
+								<div class="col-sm-8">
+									<input type="text" placeholder="請輸入姓名" id="inputEmail3" class="form-control" name="name" required="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="inputPassword3"> 密碼 </label>
+								<div class="col-sm-8">
+									<input type="password" placeholder="請輸入密碼" id="inputPassword3" class="form-control" name="password" required="">
+								</div>
+							</div>
+							<div class="form-group margin-bottom-0" style="float: right">
+								<div class="col-sm-10" >
+									<button class="btn btn-danger" type="submit">
+										登入
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--search modal-->
+<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="addcontact">查詢書籍狀態</h4>
+			</div>
+			<div class="modal-body ">
+				<form role="form" class="form-horizontal" action="/search/search_by_name" method="post" style="margin-top: 15px">
+					<%= token_tag nil%>
+					<div class="row">
+						<div class="col-md-5">
+							<label>書名查詢:</label>
+							<input type="text" name="book_name"/>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-danger" type="submit">
+								查詢
+							</button>
+						</div>
+					</div>
+				</form>
+				<form role="form" class="form-horizontal" action="/search/search_by_BN" method="post" style="margin-top: 15px">
+					<%= token_tag nil%>
+					<div class="row" style="margin-top: 15px">
+						<div class="col-md-5" >
+							<label> 序號查詢: </label>
+							<input type="text" name="BN"/>
+
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-danger" type="submit">
+								查詢
+							</button>
+						</div>
+					</div>
+				</form>
+				<div class="row">
+					<div class="col-md-5" >
+						<a href="/search/rented"><h3> 出租中書籍查詢 </h3></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5" >
+						<a href="/search/date_order"><h3> 歸還日期排序 </h3></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5" >
+						<a href="/search/hot"><h3> 熱門推薦 </h3></a>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

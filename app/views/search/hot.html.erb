@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<div class="panel panel-white" id="panel1">
+			<table class="table  table-hover" id="sample-table-2">
+				<thead>
+					<tr>
+						<th class="col-md-1"></th>
+						<th class="col-md-3">書名</th>
+						<th class="hidden-xs col-md-2">索書號</th>
+						<th class="col-md-2">租借次數</th>
+						<th class="hidden-xs col-md-2">狀態</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@book.order(hot_count: :DESC).each do |b|%>
+					<tr>
+						<td></td>
+						<td><%= b.name%></td>
+						<td class="hidden-xs"><%= b.BN%></td>
+						<td><%= b.book_rents.length%></td>
+						<td class="hidden-xs"><%if b.borrowed == false %> <span class="label label-sm label-success">可外借</span> <%else%> <span class="label label-sm label-danger">租借中</span> <%end%></td>
+					</tr>
+					<%end%>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

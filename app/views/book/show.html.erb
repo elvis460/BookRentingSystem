@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="row">
+		<div class="panel panel-white" id="panel1">
+			<div class="panel-heading"></div>
+			<div class="panel-body">
+				<div class="pro-img-box text-center">
+					<img src="<%= @book.image%>" alt="" style="width: 400px">
+				</div>
+				<table class="table table-hover" id="sample-table-1" style="margin-top: 30px">
+					<thead></thead>
+					<tbody >
+						<tr class="col-md-10">
+							<td><h4 class="text-center">書名：</h4></td>
+							<td><h4 class="text-center"><%= @book.name%></h4></td>
+						</tr>
+						<tr class="col-md-10">
+							<td><h4 class="text-center">索書號：</h4></td>
+							<td><h4 class="text-center"><%= @book.BN%></h4></td>
+						</tr>
+						<tr class="col-md-10">
+							<td><h4 class="text-center">書本狀態：</h4></td>
+							<td><%if @book.borrowed == false %> <h4 class="text-center">可外借</h4><%else%><h4 class="text-center">租借中</h4><%end%></td>
+						</tr>
+						<tr class="col-md-10">
+							<td><h4 class="text-center">租借期限：</h4></td>
+							<td><h4 class="text-center">7天</h4></td>
+						</tr>
+						<tr class="col-md-10">
+							<td><h4 class="text-center">逾時收費：</h4></td>
+							<td><h4 class="text-center">$10</h4></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="panel-footer">
+				<%if current_user.identity==1%>
+				<%if @book.borrowed == false%>
+				<a href="/bookrent/new/<%= @book.id%>"class="btn btn-info"> 借書</a>
+				<%else%>
+				<h4 class="text-center">租借中</h4>
+				<%end%>
+				<%else%>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>

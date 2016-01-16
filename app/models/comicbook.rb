@@ -1,0 +1,2 @@
+class Comicbook < Category
+end
