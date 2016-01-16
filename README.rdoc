@@ -1,28 +1,8 @@
-== README
+A school small project.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Book Rening System
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+1. The general user can only see books' information.
+2. The admin can help user rent or give back the books.
+3. User can search book by keyword or BN
+4. Admin can edit or add new books
